@@ -28,9 +28,7 @@ SECRET_KEY = "%fk(5n0og)ho(nduha9)hiy)q5zy-420z5-lrt(y(xx#j!2^_0"
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "howshergfeeling.herokuapp.com",
-    "www.howshergfeeling.com",
-    "howshergfeeling.com",
+    "alexandjennatravels.herokuapp.com",
 ]
 
 # Application definition
