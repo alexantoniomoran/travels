@@ -1,0 +1,32 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                background-color: black;
+            }
+            h1 {
+                color: white;
+                text-align: center;
+                line-height: 5px;
+                padding-top: 20px;
+                padding-bottom: 50px;
+            }
+            .embedded-google-map {
+                height: 80%;
+                width: 80%;
+                margin: auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Where have Alex and Jenna been?</h1>
+
+        <div class="embedded-google-map">
+            <iframe src="{{ GOOGLE_MAP_URL }}" width="832" height="624"></iframe>
+        </div>
+    </body>
+
+</html>
