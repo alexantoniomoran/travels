@@ -90,7 +90,7 @@
                   <h4>{{ photo.description }}</h4>
                     <div class="portfolio-links">
                       {% if photo.photo.url %}
-                        <a href="{{ photo.photo.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                        <a href="{{ photo.photo.url }}.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
                       {% else %}
                         <a href="{{ photo.photo }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
                       {% endif %}
