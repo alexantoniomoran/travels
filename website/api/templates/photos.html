@@ -88,9 +88,13 @@
                 <img src="{{ photo.photo }}" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>{{ photo.description }}</h4>
-                  <div class="portfolio-links">
-                    <a href="{{ photo.photo }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
-                  </div>
+                    <div class="portfolio-links">
+                      {% if photo.photo.url %}
+                        <a href="{{ photo.photo.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                      {% else %}
+                        <a href="{{ photo.photo }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                      {% endif %}
+                    </div>
                 </div>
               </div>
             </div>
