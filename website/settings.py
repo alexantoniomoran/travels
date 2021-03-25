@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cloudinary_storage",
+    "cloudinary",
     "constance",
     "constance.backends.database",
     "website.api",
@@ -146,6 +148,12 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 MEDIA_URL = "/media/"
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.environ["CLOUD_NAME"],
+    "API_KEY": os.environ["CLOUD_API_KEY"],
+    "API_SECRET": os.environ["CLOUD_API_SECRET"],
+}
 
 import dj_database_url
 
