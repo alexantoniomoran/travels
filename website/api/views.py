@@ -1,5 +1,6 @@
 from braces.views import CsrfExemptMixin
 from constance import config
+from django.conf import settings
 from django.views.generic import TemplateView
 
 from website.api.constants import PHOTO_TYPES
@@ -21,6 +22,7 @@ class PhotosView(CsrfExemptMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PhotosView, self).get_context_data(**kwargs)
+        context["debug"] = settings.DEBUG
         context["filters"] = PHOTO_TYPES.values
 
         photos = Photo.objects.all()
