@@ -154,7 +154,8 @@ h1, h2, h3, h4, h5, h6 {
 # Header Social Links
 --------------------------------------------------------------*/
 .header-social-links {
-  padding-right: 250px;
+  padding-left: 150px;
+  padding-right: 100px;
 }
 
 .header-social-links a {
