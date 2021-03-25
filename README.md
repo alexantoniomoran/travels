@@ -8,7 +8,7 @@ A website to document Alex & Jenna's travels
 3. source ~/.bash_profile
 4. source ../[venv_name]/bin/activate
 5. python manage.py createsuperuser
-6. Make sure the local env var DJANGO_SETTINGS_MODULE is set to website.local_settings
+6. Make sure the local env var DJANGO_SETTINGS_MODULE is set to website.local_settings (export DJANGO_SETTINGS_MODULE=website.local_settings)
 
 
 ## Locally Run Code
@@ -28,4 +28,5 @@ https://www.codementor.io/@jamesezechukwu/how-to-deploy-django-app-on-heroku-dts
 
 ## Heroku Useful Commands
 1. heroku logs –tail
+2. heroku run python manage.py migrate
 2. heroku run python manage.py createsuperuser

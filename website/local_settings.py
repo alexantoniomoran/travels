@@ -106,6 +106,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_URL = "/static/"
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -120,5 +121,12 @@ CONSTANCE_CONFIG = {
         "https://www.google.com/maps/d/embed?mid=19bC1M0RZ32J2YnZHXuRhU5jsuq-0jUqm",
         "Embedded Google Map URL",
     ),
+    "THUMBNAIL_HEIGHT": ("350", "Height of photo thumbnail"),
+    "THUMBNAIL_WIDTH": ("350", "Width of photo thumbnail"),
 }
-CONSTANCE_CONFIG_FIELDSETS = OrderedDict([("Google Maps Key", ("GOOGLE_MAP_URL",))])
+CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
+    [
+        ("Google Maps Key", ("GOOGLE_MAP_URL",)),
+        ("Photo Settings", ("THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
+    ]
+)

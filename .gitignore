@@ -1,2 +1,5 @@
 __pycache__/
 .idea/
+.DS_Store
+website/api/.DS_Store
+website/api/templates/.DS_Store

@@ -124,22 +124,14 @@ LOGGING = {
         "simple": {"format": "%(levelname)s %(message)s"},
     },
     "handlers": {
-        "null": {
-            "level": "DEBUG",
-            "class": "logging.NullHandler",
-        },
+        "null": {"level": "DEBUG", "class": "logging.NullHandler",},
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         },
     },
-    "loggers": {
-        "testlogger": {
-            "handlers": ["console"],
-            "level": "INFO",
-        }
-    },
+    "loggers": {"testlogger": {"handlers": ["console"], "level": "INFO",}},
 }
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -150,7 +142,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 STATIC_URL = "/static/"
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, "static")
-STATICFILES_DIRS = (os.path.join(PROJECT_DIR, "live-static", "static-root"),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 MEDIA_URL = "/media/"
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
@@ -166,5 +158,12 @@ CONSTANCE_CONFIG = {
         "https://www.google.com/maps/d/embed?mid=19bC1M0RZ32J2YnZHXuRhU5jsuq-0jUqm",
         "Embedded Google Map URL",
     ),
+    "THUMBNAIL_HEIGHT": ("350", "Height of photo thumbnail"),
+    "THUMBNAIL_WIDTH": ("350", "Width of photo thumbnail"),
 }
-CONSTANCE_CONFIG_FIELDSETS = OrderedDict([("Google Maps Key", ("GOOGLE_MAP_URL",))])
+CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
+    [
+        ("Google Maps Key", ("GOOGLE_MAP_URL",)),
+        ("Photo Settings", ("THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
+    ]
+)
