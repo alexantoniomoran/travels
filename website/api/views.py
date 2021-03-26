@@ -24,10 +24,29 @@ class MainPageView(CsrfExemptMixin, TemplateView):
 class PhotosView(CsrfExemptMixin, TemplateView):
     template_name = "photos.html"
 
-    def get_random_photos(self, qs):
-        possible_ids = list(qs.values_list("id", flat=True))
-        possible_ids = random.sample(possible_ids, k=int(config.DISPLAY_NUMBER))
-        return qs.filter(pk__in=possible_ids)
+    @staticmethod
+    def get_random_photos(qs):
+        return_list = []
+        for photo_type in PHOTO_TYPES.values:
+            type_ids = list(
+                qs.filter(photo_type=photo_type).values_list("id", flat=True)
+            )
+            if not type_ids:
+                continue
+
+            sample_type_ids = random.sample(type_ids, k=1)
+            return_list.append(qs.filter(pk__in=sample_type_ids).first())
+
+        possible_ids = list(
+            qs.exclude(id__in=[i.id for i in return_list]).values_list("id", flat=True)
+        )
+        number_to_sample = min(
+            (int(config.DISPLAY_NUMBER) - len(return_list)), len(possible_ids)
+        )
+        sample_possible_ids = random.sample(possible_ids, k=number_to_sample)
+        return_list.extend(list(qs.filter(pk__in=sample_possible_ids)))
+
+        return return_list
 
     def get_context_data(self, **kwargs):
         context = super(PhotosView, self).get_context_data(**kwargs)
