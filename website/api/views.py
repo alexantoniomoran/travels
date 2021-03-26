@@ -24,7 +24,7 @@ class PhotosView(CsrfExemptMixin, TemplateView):
 
     def get_random_photos(self, qs):
         possible_ids = list(qs.values_list("id", flat=True))
-        possible_ids = random.choices(possible_ids, k=int(config.DISPLAY_NUMBER))
+        possible_ids = random.sample(possible_ids, k=int(config.DISPLAY_NUMBER))
         return qs.filter(pk__in=possible_ids)
 
     def get_context_data(self, **kwargs):
