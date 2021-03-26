@@ -126,14 +126,22 @@ LOGGING = {
         "simple": {"format": "%(levelname)s %(message)s"},
     },
     "handlers": {
-        "null": {"level": "DEBUG", "class": "logging.NullHandler",},
+        "null": {
+            "level": "DEBUG",
+            "class": "logging.NullHandler",
+        },
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         },
     },
-    "loggers": {"testlogger": {"handlers": ["console"], "level": "INFO",}},
+    "loggers": {
+        "testlogger": {
+            "handlers": ["console"],
+            "level": "INFO",
+        }
+    },
 }
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
@@ -166,12 +174,13 @@ CONSTANCE_CONFIG = {
         "https://www.google.com/maps/d/embed?mid=19bC1M0RZ32J2YnZHXuRhU5jsuq-0jUqm",
         "Embedded Google Map URL",
     ),
+    "DISPLAY_NUMBER": ("9", "Number of photos to display"),
     "THUMBNAIL_HEIGHT": ("350", "Height of photo thumbnail"),
     "THUMBNAIL_WIDTH": ("350", "Width of photo thumbnail"),
 }
 CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
     [
         ("Google Maps Key", ("GOOGLE_MAP_URL",)),
-        ("Photo Settings", ("THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
+        ("Photo Settings", ("DISPLAY_NUMBER", "THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
     ]
 )

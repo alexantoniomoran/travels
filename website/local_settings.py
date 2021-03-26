@@ -121,12 +121,13 @@ CONSTANCE_CONFIG = {
         "https://www.google.com/maps/d/embed?mid=19bC1M0RZ32J2YnZHXuRhU5jsuq-0jUqm",
         "Embedded Google Map URL",
     ),
+    "DISPLAY_NUMBER": ("9", "Number of photos to display"),
     "THUMBNAIL_HEIGHT": ("350", "Height of photo thumbnail"),
     "THUMBNAIL_WIDTH": ("350", "Width of photo thumbnail"),
 }
 CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
     [
         ("Google Maps Key", ("GOOGLE_MAP_URL",)),
-        ("Photo Settings", ("THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
+        ("Photo Settings", ("DISPLAY_NUMBER", "THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
     ]
 )

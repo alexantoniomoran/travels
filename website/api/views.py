@@ -1,3 +1,5 @@
+import random
+
 from braces.views import CsrfExemptMixin
 from constance import config
 from django.conf import settings
@@ -20,12 +22,19 @@ class MainPageView(CsrfExemptMixin, TemplateView):
 class PhotosView(CsrfExemptMixin, TemplateView):
     template_name = "photos.html"
 
+    def get_random_photos(self, qs):
+        possible_ids = list(qs.values_list("id", flat=True))
+        possible_ids = random.choices(possible_ids, k=int(config.DISPLAY_NUMBER))
+        return qs.filter(pk__in=possible_ids)
+
     def get_context_data(self, **kwargs):
         context = super(PhotosView, self).get_context_data(**kwargs)
         context["debug"] = settings.DEBUG
         context["filters"] = PHOTO_TYPES.values
 
         photos = Photo.objects.all()
-        serializer = PhotoSerializer(instance=photos, many=True)
+        random_photos = self.get_random_photos(photos)
+        serializer = PhotoSerializer(instance=random_photos, many=True)
         context["photos"] = serializer.data
+
         return context
