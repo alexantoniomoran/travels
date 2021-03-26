@@ -18,7 +18,8 @@ class Photo(models.Model):
         choices=PHOTO_TYPES.choices,
         help_text="The 'type' of photo being uploaded",
     )
-    description = models.CharField(max_length=512, null=True, blank=True)
+    title = models.CharField(max_length=512, null=True, blank=True, default="")
+    description = models.CharField(max_length=512, null=True, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def thumbnail_image(self):

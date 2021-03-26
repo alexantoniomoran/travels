@@ -87,12 +87,20 @@
               <div class="portfolio-wrap">
                 <img src="{{ photo.photo }}" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <h4>{{ photo.description }}</h4>
+                  <h4>{{ photo.title }}</h4>
                     <div class="portfolio-links">
                       {% if debug %}
-                        <a href="{{ photo.photo }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                        {% if photo.description %}
+                          <a href="{{ photo.photo }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                        {% else %}
+                          <a href="{{ photo.photo }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.title }}"><i class="bx bx-plus"></i></a>
+                        {% endif %}
                       {% else %}
-                        <a href="{{ photo.photo }}.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                        {% if photo.description %}
+                          <a href="{{ photo.photo }}.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.description }}"><i class="bx bx-plus"></i></a>
+                        {% else %}
+                          <a href="{{ photo.photo }}.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ photo.title }}"><i class="bx bx-plus"></i></a>
+                        {% endif %}
                       {% endif %}
                     </div>
                 </div>
