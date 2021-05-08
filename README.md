@@ -30,3 +30,11 @@ https://www.codementor.io/@jamesezechukwu/how-to-deploy-django-app-on-heroku-dts
 1. heroku logs --tail
 2. heroku run python manage.py migrate
 2. heroku run python manage.py createsuperuser
+
+
+## Set up Domain
+
+Followed article here:
+https://dev.to/spyker77/how-to-connect-godaddy-domain-with-heroku-and-cloudflare-mdh
+
+Used Heroku DNS in settings, cloudflare for the DNS, and set up custome DNS on GoDaddy
