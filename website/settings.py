@@ -170,19 +170,17 @@ DATABASES["default"].update(prod_db)
 
 CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 CONSTANCE_CONFIG = {
-    "GOOGLE_MAP_HEIGHT": ("650", "Height in pixels of the map"),
     "GOOGLE_MAP_URL": (
         "https://www.google.com/maps/d/embed?mid=19bC1M0RZ32J2YnZHXuRhU5jsuq-0jUqm&ll=38.471156655541165%2C-95.62352748885215&z=4",
         "Embedded Google Map URL",
     ),
-    "GOOGLE_MAP_WIDTH": ("1200", "Width in pixels of the map"),
     "DISPLAY_NUMBER": ("9", "Number of photos to display"),
     "THUMBNAIL_HEIGHT": ("350", "Height of photo thumbnail"),
     "THUMBNAIL_WIDTH": ("350", "Width of photo thumbnail"),
 }
 CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
     [
-        ("Google Map", ("GOOGLE_MAP_URL", "GOOGLE_MAP_HEIGHT", "GOOGLE_MAP_WIDTH")),
+        ("Google Map", ("GOOGLE_MAP_URL",)),
         ("Photo Settings", ("DISPLAY_NUMBER", "THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
     ]
 )

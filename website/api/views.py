@@ -15,9 +15,7 @@ class MainPageView(CsrfExemptMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MainPageView, self).get_context_data(**kwargs)
-        context["GOOGLE_MAP_HEIGHT"] = config.GOOGLE_MAP_HEIGHT
         context["GOOGLE_MAP_URL"] = config.GOOGLE_MAP_URL
-        context["GOOGLE_MAP_WIDTH"] = config.GOOGLE_MAP_WIDTH
         return context
 
 

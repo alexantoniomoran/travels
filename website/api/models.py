@@ -1,10 +1,14 @@
-import os
 import cloudinary.uploader
+import os
+import sys
 
 from constance import config
 from django.conf import settings
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.utils.safestring import mark_safe
+from io import BytesIO
+from PIL import Image
 
 from website.api.constants import PHOTO_TYPES
 
@@ -34,3 +38,27 @@ class Photo(models.Model):
             cloudinary.uploader.destroy(self.photo.name, invalidate=True)
 
         super(Photo, self).delete(*args, **kwargs)
+
+    def _compress_image(self, photo):
+        image_extension = photo.name.split(".")[1]
+        image_type = "PNG" if image_extension.lower() == "png" else "JPEG"
+
+        output_stream = BytesIO()
+        temp_image = Image.open(photo)
+        temp_image.save(output_stream, format=image_type, quality=20, optimize=True)
+        output_stream.seek(0)
+
+        return InMemoryUploadedFile(
+            output_stream,
+            "ImageField",
+            photo.name,
+            f"image/{image_type.lower()}",
+            sys.getsizeof(output_stream),
+            None,
+        )
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.photo = self._compress_image(self.photo)
+
+        super(Photo, self).save(*args, **kwargs)
