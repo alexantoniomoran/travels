@@ -29,6 +29,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "alexandjennatravels.herokuapp.com",
+    "www.jandatravels.com",
+    "jandatravels.com",
 ]
 
 # Application definition
@@ -126,14 +128,22 @@ LOGGING = {
         "simple": {"format": "%(levelname)s %(message)s"},
     },
     "handlers": {
-        "null": {"level": "DEBUG", "class": "logging.NullHandler",},
+        "null": {
+            "level": "DEBUG",
+            "class": "logging.NullHandler",
+        },
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
         },
     },
-    "loggers": {"testlogger": {"handlers": ["console"], "level": "INFO",}},
+    "loggers": {
+        "testlogger": {
+            "handlers": ["console"],
+            "level": "INFO",
+        }
+    },
 }
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
