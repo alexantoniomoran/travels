@@ -27,6 +27,6 @@ https://www.codementor.io/@jamesezechukwu/how-to-deploy-django-app-on-heroku-dts
 
 
 ## Heroku Useful Commands
-1. heroku logs –tail
+1. heroku logs --tail
 2. heroku run python manage.py migrate
 2. heroku run python manage.py createsuperuser

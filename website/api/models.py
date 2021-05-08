@@ -39,13 +39,28 @@ class Photo(models.Model):
 
         super(Photo, self).delete(*args, **kwargs)
 
+    @staticmethod
+    def scale_dimension(width, height, long_edge):
+        if width > height:
+            ratio = long_edge * 1.0 / width
+        else:
+            ratio = long_edge * 1.0 / height
+        return int(width * ratio), int(height * ratio)
+
     def _compress_image(self, photo):
+        width, height = self.scale_dimension(
+            photo.width,
+            photo.height,
+            long_edge=int(config.LONG_EDGE_FOR_IMAGE_COMPRESSION),
+        )
+
         image_extension = photo.name.split(".")[1]
         image_type = "PNG" if image_extension.lower() == "png" else "JPEG"
 
         output_stream = BytesIO()
         temp_image = Image.open(photo)
-        temp_image.save(output_stream, format=image_type, quality=20, optimize=True)
+        temp_image.thumbnail((width, height))
+        temp_image.save(output_stream, format=image_type, quality=70, optimize=True)
         output_stream.seek(0)
 
         return InMemoryUploadedFile(

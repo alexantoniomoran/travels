@@ -122,12 +122,24 @@ CONSTANCE_CONFIG = {
         "Embedded Google Map URL",
     ),
     "DISPLAY_NUMBER": ("9", "Number of photos to display"),
+    "LONG_EDGE_FOR_IMAGE_COMPRESSION": (
+        "1000",
+        "How much to compress image by on the long edge",
+    ),
     "THUMBNAIL_HEIGHT": ("350", "Height of photo thumbnail"),
     "THUMBNAIL_WIDTH": ("350", "Width of photo thumbnail"),
 }
 CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
     [
         ("Google Map", ("GOOGLE_MAP_URL",)),
-        ("Photo Settings", ("DISPLAY_NUMBER", "THUMBNAIL_HEIGHT", "THUMBNAIL_WIDTH")),
+        (
+            "Photo Settings",
+            (
+                "DISPLAY_NUMBER",
+                "LONG_EDGE_FOR_IMAGE_COMPRESSION",
+                "THUMBNAIL_HEIGHT",
+                "THUMBNAIL_WIDTH",
+            ),
+        ),
     ]
 )
