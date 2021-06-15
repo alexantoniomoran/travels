@@ -12,7 +12,7 @@ A website to document Alex & Jenna's travels
 
 
 ## Locally Run Code
-1. python website/manage.py runserver (use --insecure if not using local settings)
+1. python manage.py runserver (use --insecure if not using local settings)
 
 
 ## To Deploy Project to Heroku

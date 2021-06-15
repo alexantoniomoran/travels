@@ -122,6 +122,10 @@ CONSTANCE_CONFIG = {
         "Embedded Google Map URL",
     ),
     "DISPLAY_NUMBER": ("9", "Number of photos to display"),
+    "EXCLUDE_FILTER": (
+        "",
+        "Comma separated string of filters to exclude from Photos tab",
+    ),
     "LONG_EDGE_FOR_IMAGE_COMPRESSION": (
         "1000",
         "How much to compress image by on the long edge",
@@ -136,6 +140,7 @@ CONSTANCE_CONFIG_FIELDSETS = OrderedDict(
             "Photo Settings",
             (
                 "DISPLAY_NUMBER",
+                "EXCLUDE_FILTER",
                 "LONG_EDGE_FOR_IMAGE_COMPRESSION",
                 "THUMBNAIL_HEIGHT",
                 "THUMBNAIL_WIDTH",

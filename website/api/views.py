@@ -23,9 +23,9 @@ class PhotosView(CsrfExemptMixin, TemplateView):
     template_name = "photos.html"
 
     @staticmethod
-    def get_random_photos(qs):
+    def get_random_photos(cleaned_filters, qs):
         return_list = []
-        for photo_type in PHOTO_TYPES.values:
+        for photo_type in cleaned_filters:
             type_ids = list(
                 qs.filter(photo_type=photo_type).values_list("id", flat=True)
             )
@@ -46,13 +46,20 @@ class PhotosView(CsrfExemptMixin, TemplateView):
 
         return return_list
 
+    @staticmethod
+    def get_filters_with_exclusions():
+        exclude_filters = [i.strip().lower() for i in config.EXCLUDE_FILTER.split(",")]
+        return [i for i in PHOTO_TYPES.values if i not in exclude_filters]
+
     def get_context_data(self, **kwargs):
+        cleaned_filters = self.get_filters_with_exclusions()
+
         context = super(PhotosView, self).get_context_data(**kwargs)
         context["debug"] = settings.DEBUG
-        context["filters"] = PHOTO_TYPES.values
+        context["filters"] = cleaned_filters
 
-        photos = Photo.objects.all()
-        random_photos = self.get_random_photos(photos)
+        photos = Photo.objects.filter(photo_type__in=cleaned_filters)
+        random_photos = self.get_random_photos(cleaned_filters, photos)
         serializer = PhotoSerializer(instance=random_photos, many=True)
         context["photos"] = serializer.data
 
